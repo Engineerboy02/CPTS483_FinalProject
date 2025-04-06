@@ -32,7 +32,10 @@ class TicTacToe:
             self.board[index] = self.current_player
             self.buttons[index].config(text=self.current_player)
 
-            RC.RCC.dataparse(self.board)
+            print(index)
+            print()
+            
+            RC.RCC.dataparse(self, index)
 
             if self.check_winner():
                 messagebox.showinfo("Tic-Tac-Toe", f"Player {self.current_player} wins!")
@@ -69,6 +72,9 @@ class TicTacToe:
 
     def reset_board(self):
         self.board = [""] * 9
+
+        RC.RCC.ClearBoard(self)
+
         for button in self.buttons:
             button.config(text="")
         self.current_player = "X"
