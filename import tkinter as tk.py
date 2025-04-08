@@ -35,7 +35,7 @@ class TicTacToe:
             print(index)
             print()
             
-            RC.RCC.dataparse(self, index)
+            RC.RCC.PlaceElement(self, index)
 
             if self.check_winner():
                 messagebox.showinfo("Tic-Tac-Toe", f"Player {self.current_player} wins!")
