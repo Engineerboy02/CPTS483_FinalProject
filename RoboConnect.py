@@ -8,11 +8,11 @@ class RCC:
 
         self.current_player = "X"
         self.board = [""] * 9
-        
+        self.playnumber = 0
 
     def greet():
         print("RoboConnect linked and ready")
-        Location.greet()
+        Locations.greet()
         return
 
     def dataparse(self, index):
@@ -27,26 +27,62 @@ class RCC:
         return
 
     def ClearBoard(self):
+        player = "X"
+        #board = []
+        board = self.board
+
+        playnumber = self.playnumber
+
+        for i in range(playnumber):
+        
+            index_retreive = board.index(player)
+
+            retreive_location = Locations.NGLocationData(index_retreive)
+            play_location = Locations.OGLocationData(i)
+
+            print(retreive_location)
+            print(play_location)
+
+            #Robot.pickup(retreive_location)
+            #Robot.place(retreive_location)
+
+            if (player == "X"):
+                player = "O"
+            else:
+                player = "X"
+
+            print(board)
+            board[index_retreive] = ""
+            print(board)
+            print()
+
         print("Board Cleared")
+        self.playnumber = 0
         return
     
     def PlaceElement(self, index):
-        print("Getting location")
-        play_location = Location.NGLocationData(index)
+        print("Getting locations")
+        retreive_location = Locations.OGLocationData(self.playnumber)
+        play_location = Locations.NGLocationData(index)
 
         print("sending to robot")
-        print(self.current_player) #current Player
-        print(index) #index of the latest play
+        #print(self.current_player) #current Player
+        #print(index) #index of the latest play
+        print(retreive_location)
         print(play_location)
-        
-        #Robot.pickup(self.current_player)
+        #print(self.playnumber)
+
+        #Robot.pickup(retreive_location)
         #Robot.place(play_location)
         
-        
+        self.playnumber = self.playnumber + 1
 
         return
     
-class Location:
+class Locations:
+
+    elementgrid = ["X", "O", "X", "O", "X", "O", "X", "O", "X"]
+
     def greet():
         print("Layout linked and ready")
         return
@@ -124,3 +160,7 @@ class Location:
         position = [X, Y]
 
         return(position)
+
+    def resetLocation():
+
+        elementgrid = ["X", "O", "X", "O", "X", "O", "X", "O", "X"]

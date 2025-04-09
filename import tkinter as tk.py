@@ -13,6 +13,8 @@ class TicTacToe:
         self.board = [""] * 9
         self.buttons = []
 
+        self.playnumber = 0
+
         for i in range(3):
             for j in range(3):
                 index = 3 * i + j
@@ -31,12 +33,9 @@ class TicTacToe:
         if self.board[index] == "":
             self.board[index] = self.current_player
             self.buttons[index].config(text=self.current_player)
-
-            print(index)
-            print()
             
             RC.RCC.PlaceElement(self, index)
-
+            
             if self.check_winner():
                 messagebox.showinfo("Tic-Tac-Toe", f"Player {self.current_player} wins!")
                 self.reset_board()
@@ -71,9 +70,10 @@ class TicTacToe:
         return all(cell != "" for cell in self.board)
 
     def reset_board(self):
-        self.board = [""] * 9
-
+        
         RC.RCC.ClearBoard(self)
+
+        self.board = [""] * 9
 
         for button in self.buttons:
             button.config(text="")
