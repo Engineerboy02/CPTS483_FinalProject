@@ -164,3 +164,12 @@ class Locations:
     def resetLocation():
 
         elementgrid = ["X", "O", "X", "O", "X", "O", "X", "O", "X"]
+
+class Robot:
+
+    def pickup(location):
+
+        return
+    def place(location):
+
+        return
